@@ -16,15 +16,24 @@
         </div>
         <form>
             <div id="formInputs">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
+
+                <label for="bookTitle">
+                    <input id="bookTitle" class="bookInfo" type="text">
+                </label>
+
+                <label for="bookAuthor">
+                    <input id="bookAuthor" class="bookInfo" type="text">
+                </label>
+                <label for="pages">
+                    <input id="pages" class="bookInfo" type="text">
+                </label>
+
                 <div id="checkboxContainer">
-                    <input type="checkbox">
+                    <input id="bookCompleted" type="checkbox">
                     <h2>Have you read this book?</h2>
                 </div>
+                <button id="submitbtn" type="button">Add New Book</button>
+
             </div>
         </form>
     </aside>
@@ -35,8 +44,8 @@
                 <h3>Sup</h3>
                 <p>hello123</p>
             </div>
-            <div id="card"></div>
-            <div id="card"></div>
+
+
         </div>
     </main>
 
