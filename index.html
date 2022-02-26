@@ -18,14 +18,14 @@
             <div id="formInputs">
 
                 <label for="bookTitle">
-                    <input id="bookTitle" class="bookInfo" type="text">
+                    <input id="bookTitle" class="bookInfo" placeholder="Book Title*" type="text">
                 </label>
 
                 <label for="bookAuthor">
-                    <input id="bookAuthor" class="bookInfo" type="text">
+                    <input id="bookAuthor" class="bookInfo" placeholder="Book Author*" type="text">
                 </label>
                 <label for="pages">
-                    <input id="pages" class="bookInfo" type="text">
+                    <input id="pages" class="bookInfo" placeholder="# Pages*" type="text">
                 </label>
 
                 <div id="checkboxContainer">
@@ -38,11 +38,28 @@
         </form>
     </aside>
     <main>
-        <header></header>
+        <header>
+            <div id="legendContainer">
+                <span>Total Book Count:<span id="bookCount"></span></span>
+                <span><img src="/icons/book.svg" alt="unread book"> Unread Book</span>
+                <span><img src="/icons/book-open.svg" alt="read book">Read Book</span>
+            </div>
+        </header>
         <div id="cardContainer">
             <div id="card">
-                <h3>Sup</h3>
-                <p>hello123</p>
+                <h3 id="cardTitle">Lord of the Rings</h3>
+                <span id="cardAuthor">By: J. R. R. Tolkien </span>
+                <span id="cardPages">Pages: 479</span>
+            </div>
+            <div id="card">
+                <h3 id="cardTitle">Lord of the Rings</h3>
+                <span id="cardAuthor">By: J. R. R. Tolkien </span>
+                <span id="cardPages">Pages: 479</span>
+            </div>
+            <div id="card">
+                <h3 id="cardTitle">Lord of the Rings</h3>
+                <span id="cardAuthor">By: J. R. R. Tolkien </span>
+                <span id="cardPages">Pages: 479</span>
             </div>
 
 

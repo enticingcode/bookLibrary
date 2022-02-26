@@ -23,7 +23,7 @@ let myLibrary = [];
 function Book(title, author, pages, completed) {
     this.title = title,
         this.author = author,
-        this.pages = pages,
+        this.pages = Number(pages),
         this.completed = completed
 }
 
@@ -38,13 +38,27 @@ function addValues() {
 
 
 addNewBook = function () {
-    const newBook = new Book(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
-    myLibrary.push(newBook);
-    log(myLibrary);
-    bookTitle.value = "";
-    bookAuthor.value = "";
-    pages.value = "";
-    bookCompleted.checked = false;
+    if (bookTitle.value == "") {
+        alert("Please insert a book title");
+    }
+    else if (bookAuthor.value == "") {
+        alert("Please insert an Author");
+    }
+    else if (pages.value == "") {
+        alert("Please insert number of pages");
+    }
+    else if (isNaN(pages.value)) {
+        alert("Please insert valid number of pages");
+    }
+    else {
+        const newBook = new Book(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
+        myLibrary.push(newBook);
+        log(myLibrary);
+        bookTitle.value = "";
+        bookAuthor.value = "";
+        pages.value = "";
+        bookCompleted.checked = false;
+    }
 }
 
 submitbtn.addEventListener("click", addNewBook);
