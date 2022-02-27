@@ -7,7 +7,7 @@ const pages = document.querySelector("#pages");
 const bookCompleted = document.querySelector("#bookCompleted");
 const submitbtn = document.querySelector("#submitbtn");
 const library = document.querySelector("#cardContainer");
-const close = document.querySelector("#closeOut");
+const closeBtn = document.querySelectorAll(".closeOut");
 
 
 
@@ -41,9 +41,7 @@ function addBookToLibrary() {
 
 }
 
-function addValues() {
 
-}
 
 
 let addNewBook = function () {
@@ -60,6 +58,7 @@ let addNewBook = function () {
         alert("Please insert valid number of pages");
     }
     else {
+
         const newBook = new Book(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
         myLibrary.push(newBook);
         addCardStack(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
@@ -98,6 +97,7 @@ let addCardStack = function (title, author, pages, completed) {
     h3.innerText = `${title}`;
     authorSpan.innerText = `By: ${author}`;
     pagesSpan.innerText = `Pages: ${pages}`;
+    closeButton.innerHTML = "<img src='/icons/close_black_24dp.svg' alt=''>";
 
     // APPENDAGES //
     newCard.append(closeButton);
@@ -119,10 +119,15 @@ let addCardStack = function (title, author, pages, completed) {
 // }
 
 function deleteCard() {
-    log("itworks")
+    // log(e);
+    // log(e.target.parentNode);
+    this.parentNode.remove();
 }
 submitbtn.addEventListener("click", addNewBook);
-closeOut.addEventListener("click", deleteCard);
+closeBtn.forEach(button => {
+    button.addEventListener("click", deleteCard);
+});
+
 
 
 
