@@ -19,7 +19,7 @@ const library = document.querySelector("#cardContainer");
 /////////////////////////
 
 
-let myLibrary = [{ title: "Atomic Habits", author: "James Clear" }];
+let myLibrary = [{ title: "Atomic Habits", author: "James Clear", pages: 479, completed: true }];
 
 function Book(title, author, pages, completed) {
     this.title = title,

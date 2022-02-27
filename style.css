@@ -198,10 +198,9 @@ main {
     grid-template: repeat(auto-fit, minmax(300px, 1fr)) / repeat(auto-fit, minmax(323px, 1fr));
 }
 
-#card {
+.card {
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 200px;
     border-radius: 5px;
     box-shadow: 0px 1px 1px 1px grey;
@@ -209,12 +208,20 @@ main {
     padding: 30px;
     font-size: 1.3rem;
     max-width: 350px;
+    justify-content: center;
+    position: relative;
 }
 
-#card span {
+.cardContents {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.card span {
     padding: 10px 0;
 }
-#card h3 {
+.card h3 {
     font-size: 1.7rem;
 }
 .bookInfo {
@@ -256,4 +263,26 @@ main {
     border: none;
     border-radius: 40px;
     font-size: 19px;
+}
+
+#closeOut {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display:block;
+    padding: 10px;
+    width:fit-content;
+    transform: rotate(-90deg);
+    transition-duration: 0.4s;
+}
+
+.card:hover > #closeOut {
+    display:block;
+}
+
+#closeOut:hover {
+    transform: rotate(90deg);
+    transition-duration: 0.4s;
+    filter:drop-shadow(0px 1px 1px 1px grey);
+    scale:1.2;
 }
