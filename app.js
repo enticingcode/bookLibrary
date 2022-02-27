@@ -6,6 +6,7 @@ const bookAuthor = document.querySelector("#bookAuthor");
 const pages = document.querySelector("#pages");
 const bookCompleted = document.querySelector("#bookCompleted");
 const submitbtn = document.querySelector("#submitbtn");
+const library = document.querySelector("#cardContainer");
 
 // log(bookTitle, bookAuthor, pages, bookCompleted, submitbtn);
 
@@ -18,7 +19,7 @@ const submitbtn = document.querySelector("#submitbtn");
 /////////////////////////
 
 
-let myLibrary = [];
+let myLibrary = [{ title: "Atomic Habits", author: "James Clear" }];
 
 function Book(title, author, pages, completed) {
     this.title = title,
@@ -58,6 +59,15 @@ addNewBook = function () {
         bookAuthor.value = "";
         pages.value = "";
         bookCompleted.checked = false;
+        displayBooks(myLibrary);
+    }
+}
+
+function displayBooks(libraryArray) {
+    for (item of libraryArray) {
+        for (obj in item) {
+            log(item[obj]);
+        }
     }
 }
 
@@ -70,4 +80,6 @@ submitbtn.addEventListener("click", addNewBook);
 
 
 
-log(myLibrary);
+
+
+// log(myLibrary);

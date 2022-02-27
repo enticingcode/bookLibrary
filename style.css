@@ -208,6 +208,7 @@ main {
     margin: 20px;
     padding: 30px;
     font-size: 1.3rem;
+    max-width: 350px;
 }
 
 #card span {
@@ -250,4 +251,9 @@ main {
     margin-right: 7px;
 }
 
-#formInputs 
+#formInputs button{
+    background-color: rgba(253, 204, 184, 0.575);
+    border: none;
+    border-radius: 40px;
+    font-size: 19px;
+}
