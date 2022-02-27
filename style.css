@@ -194,8 +194,7 @@ main {
     width: 100%;
     height: 80%;
     background-color: white;
-    justify-items: space-around;
-    grid-template: repeat(auto-fit, minmax(300px, 1fr)) / repeat(auto-fit, minmax(323px, 1fr));
+    grid-template: repeat(auto-fill, minmax(300px, 1fr)) / repeat(auto-fill, minmax(370px, 1fr));
 }
 
 .card {
@@ -265,7 +264,7 @@ main {
     font-size: 19px;
 }
 
-#closeOut {
+.closeOut {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -276,13 +275,15 @@ main {
     transition-duration: 0.4s;
 }
 
-.card:hover > #closeOut {
+.card:hover > .closeOut {
     display:block;
 }
 
-#closeOut:hover {
+.closeOut:hover {
     transform: rotate(90deg);
     transition-duration: 0.4s;
-    filter:drop-shadow(0px 1px 1px 1px grey);
     scale:1.2;
+    transform-origin: 50% 50%;
+    color:white;
+    cursor:pointer;
 }
