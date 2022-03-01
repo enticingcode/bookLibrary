@@ -7,17 +7,12 @@ const pages = document.querySelector("#pages");
 const bookCompleted = document.querySelector("#bookCompleted");
 const submitbtn = document.querySelector("#submitbtn");
 const library = document.querySelector("#cardContainer");
-const closeBtn = document.querySelectorAll(".closeOut");
+const closeBtn = document.getElementsByClassName("closeOut");
 
-
-
-// NEW ELEMENT CREATORS //
-
-
-
+let btnList;
+let bookCount = 2;
 
 // log(bookTitle, bookAuthor, pages, bookCompleted, submitbtn);
-
 // log(checkBox.checked);
 // log(bookTitle.value);
 
@@ -27,7 +22,10 @@ const closeBtn = document.querySelectorAll(".closeOut");
 /////////////////////////
 
 
-let myLibrary = [{ title: "Atomic Habits", author: "James Clear", pages: 479, completed: true }];
+let myLibrary = [
+    { title: "Atomic Habits", author: "James Clear", pages: 479, completed: true },
+    { title: "Marvin's Authobiography", author: "Marvin T.", pages: 626, completed: true }
+];
 
 function Book(title, author, pages, completed) {
     this.title = title,
@@ -87,6 +85,7 @@ let addCardStack = function (title, author, pages, completed) {
 
     // CLASS NAMING //
     newCard.className = "card";
+    newCard.setAttribute("data-bookNumber", `${++bookCount}`);
     h3.className = "cardTitle";
     cardContent.className = "cardContents";
     authorSpan.className = "cardAuthor";
@@ -107,7 +106,7 @@ let addCardStack = function (title, author, pages, completed) {
     cardContent.append(pagesSpan);
 
     library.append(newCard);
-
+    btnArr();
 }
 
 // function displayBooks(libraryArray) {
@@ -119,14 +118,38 @@ let addCardStack = function (title, author, pages, completed) {
 // }
 
 function deleteCard() {
-    // log(e);
-    // log(e.target.parentNode);
+    log(this.parentNode.dataset.booknumber);
+    myLibrary.splice(this.parentNode.dataset.booknumber - 1, 1);
     this.parentNode.remove();
+
+
+    // THIS LOOP DOESN'T WORK BECAUSE WHEN I DELETE BOOK 2, IT SELECTS ALL OTHER CARDS AND ASSIGNS THEM BOOK 2;
+
+    let bookList = document.querySelectorAll("[data-booknumber]");
+    bookList.forEach(item => item.setAttribute("data-booknumber", `${this.parentNode.dataset.booknumber}`))
+
+    /// IN ORDER TO SET NUMBERS CORRECTLY I HAVE TO FIGURE OUT A WAY OF CHANGING THE NUMBERS ACCORDING TO THE ARRAY INDEX.
+
+    //==========================================================================================================
+    --bookCount;
+    log(myLibrary)
 }
+
+
 submitbtn.addEventListener("click", addNewBook);
-closeBtn.forEach(button => {
-    button.addEventListener("click", deleteCard);
-});
+
+
+let btnArr = function () {
+    btnList = Array.from(closeBtn);
+    btnList.forEach(button => {
+        button.addEventListener("click", deleteCard);
+    });
+    log(btnList);
+}
+
+
+
+btnArr();
 
 
 
@@ -136,5 +159,4 @@ closeBtn.forEach(button => {
 
 
 
-
-// log(myLibrary);
+log(myLibrary);
