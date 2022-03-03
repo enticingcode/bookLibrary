@@ -10,8 +10,8 @@ const library = document.querySelector("#cardContainer");
 const closeBtn = document.getElementsByClassName("closeOut");
 
 let btnList;
-let bookCount = 2;
-
+let bookCount = 4;
+let bookList;
 // log(bookTitle, bookAuthor, pages, bookCompleted, submitbtn);
 // log(checkBox.checked);
 // log(bookTitle.value);
@@ -24,7 +24,9 @@ let bookCount = 2;
 
 let myLibrary = [
     { title: "Atomic Habits", author: "James Clear", pages: 479, completed: true },
-    { title: "Marvin's Authobiography", author: "Marvin T.", pages: 626, completed: true }
+    { title: "Marvin's Authobiography", author: "Marvin T.", pages: 626, completed: true },
+    { title: "John's Authobiography", author: "Johnny", pages: 100, completed: false },
+    { title: "Mom's Authobiography", author: "Mom", pages: 36, completed: true }
 ];
 
 function Book(title, author, pages, completed) {
@@ -35,11 +37,15 @@ function Book(title, author, pages, completed) {
 }
 
 
-function addBookToLibrary() {
+// function addBookToLibrary() {
 
-}
+// }
 
-
+// INPUT VALUES INTO AN OBJECT, AND PLACE OBJECT INTO ARRAY OF OBJECTS. 
+// FROM THESE OBJECTS YOU CREATE TAKE OUT THE VALUES AND PLACE THEM INTO A CARD DIV.
+//  WHEN YOU CLICK THE X ON THE CARD, THE OBJECT MUST BE DELETED FROM THE ARRAY AND CARD DELETED.
+// TO LINK THE OBJECT TO THE ARRAY INDEX WE MUST USE SOMETHING.
+// LINK ARRAY INDEX TO CARD VIA ATTRIBUTE NUMBERS? IF SO HOW DO YOU CHANGE THE FLUCTUATING NUMBERS ON THE HTML ELEMENTS ACCORDING TO ARRAY INDEX.
 
 
 let addNewBook = function () {
@@ -56,7 +62,6 @@ let addNewBook = function () {
         alert("Please insert valid number of pages");
     }
     else {
-
         const newBook = new Book(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
         myLibrary.push(newBook);
         addCardStack(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
@@ -65,7 +70,7 @@ let addNewBook = function () {
         bookAuthor.value = "";
         pages.value = "";
         bookCompleted.checked = false;
-        // displayBooks(myLibrary);
+        updateBookCount();
     }
 }
 let addCardStack = function (title, author, pages, completed) {
@@ -85,7 +90,13 @@ let addCardStack = function (title, author, pages, completed) {
 
     // CLASS NAMING //
     newCard.className = "card";
-    newCard.setAttribute("data-bookNumber", `${++bookCount}`);
+
+    // NEED TO FIX BOOK COUNT IN LIBRARY DATA ATTRIBUTE
+
+
+    ///////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    bookCount++
+    newCard.setAttribute("data-bookNumber", `${bookCount - 1}`);
     h3.className = "cardTitle";
     cardContent.className = "cardContents";
     authorSpan.className = "cardAuthor";
@@ -107,31 +118,30 @@ let addCardStack = function (title, author, pages, completed) {
 
     library.append(newCard);
     btnArr();
+    updateBookCount();
 }
 
-// function displayBooks(libraryArray) {
-//     for (item of libraryArray) {
-//         for (obj in item) {
-//             log(item[obj]);
-//         }
-//     }
-// }
-
+//============================== DELETE CARD FROM STACK ===================================//
 function deleteCard() {
-    log(this.parentNode.dataset.booknumber);
-    myLibrary.splice(this.parentNode.dataset.booknumber - 1, 1);
+
+    let bookIndex = this.parentNode.dataset.booknumber;
+
+    log("Book Number: " + bookIndex);
+
+    myLibrary.splice(bookIndex, 1);
+
     this.parentNode.remove();
 
 
-    // THIS LOOP DOESN'T WORK BECAUSE WHEN I DELETE BOOK 2, IT SELECTS ALL OTHER CARDS AND ASSIGNS THEM BOOK 2;
+    bookList = document.querySelectorAll("[data-bookNumber]");
+    log(bookList);
 
-    let bookList = document.querySelectorAll("[data-booknumber]");
-    bookList.forEach(item => item.setAttribute("data-booknumber", `${this.parentNode.dataset.booknumber}`))
+    for (let i = bookIndex; i < bookList.length; i++) {
+        log(bookList[i].dataset.booknumber = `${i}`);
+    };
 
-    /// IN ORDER TO SET NUMBERS CORRECTLY I HAVE TO FIGURE OUT A WAY OF CHANGING THE NUMBERS ACCORDING TO THE ARRAY INDEX.
-
-    //==========================================================================================================
     --bookCount;
+    updateBookCount();
     log(myLibrary)
 }
 
@@ -147,10 +157,13 @@ let btnArr = function () {
     log(btnList);
 }
 
-
+function updateBookCount() {
+    let bookNum = document.querySelector("#bookCount");
+    bookNum.innerText = bookCount;
+}
 
 btnArr();
-
+updateBookCount();
 
 
 
