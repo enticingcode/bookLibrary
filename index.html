@@ -41,8 +41,8 @@
         <header>
             <div id="legendContainer">
                 <span>Total Book Count:<span id="bookCount">3</span></span>
-                <span><img src="/icons/book.svg" alt="unread book"> Unread Book</span>
-                <span><img src="/icons/book-open.svg" alt="read book">Read Book</span>
+                <span><img src="/icons/book.svg" alt="unread book"> Unread Books: <span id="unreadCount"></span></span>
+                <span><img src="/icons/book-open.svg" alt="read book">Read Books: <span id="readCount"></span></span>
             </div>
         </header>
         <div id="cardContainer">
@@ -52,6 +52,11 @@
                     <h3 class="cardTitle">Atomic Habits</h3>
                     <span class="cardAuthor">By: James Clear </span>
                     <span class="cardPages">Pages: 479</span>
+                    <span>Mark as Read:</span>
+                    <label class="switch">
+                        <input id="read_toggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
             </div>
             <div data-bookNumber="1" class="card">
@@ -60,6 +65,11 @@
                     <h3 class="cardTitle">Marvin's Autobiography</h3>
                     <span class="cardAuthor">By: Marvin T.</span>
                     <span class="cardPages">Pages: 626</span>
+                    <span>Mark as Read:</span>
+                    <label class="switch">
+                        <input id="read_toggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
             </div>
             <div data-bookNumber="2" class="card">
@@ -68,6 +78,11 @@
                     <h3 class="cardTitle">Johns's Autobiography</h3>
                     <span class="cardAuthor">By: Johnny</span>
                     <span class="cardPages">Pages: 100</span>
+                    <span>Mark as Read:</span>
+                    <label class="switch">
+                        <input id="read_toggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
             </div>
             <div data-bookNumber="3" class="card">
@@ -76,6 +91,11 @@
                     <h3 class="cardTitle">Mom's Autobiography</h3>
                     <span class="cardAuthor">By: Mom</span>
                     <span class="cardPages">Pages: 36</span>
+                    <span>Mark as Read:</span>
+                    <label class="switch">
+                        <input id="read_toggle" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
             </div>
         </div>

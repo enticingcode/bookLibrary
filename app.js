@@ -9,9 +9,18 @@ const submitbtn = document.querySelector("#submitbtn");
 const library = document.querySelector("#cardContainer");
 const closeBtn = document.getElementsByClassName("closeOut");
 
+let toggleList = document.querySelectorAll("#read_toggle");
 let btnList;
 let bookCount = 4;
 let bookList;
+let readCount = 0;
+let unreadCount = 4;
+let unreadDisplay = document.querySelector("#unreadCount");
+let readDisplay = document.querySelector("#readCount");
+
+unreadDisplay.innerText = unreadCount;
+readDisplay.innerText = readCount;
+
 // log(bookTitle, bookAuthor, pages, bookCompleted, submitbtn);
 // log(checkBox.checked);
 // log(bookTitle.value);
@@ -82,6 +91,19 @@ let addCardStack = function (title, author, pages, completed) {
     const pagesSpan = document.createElement("span");
     const closeButton = document.createElement("span");
 
+    const readLabel = document.createElement("span");
+    const toggle = document.createElement("label");
+    const input = document.createElement("input");
+    const sliderSpan = document.createElement("span");
+
+    //     <span>Mark as Read:</span>
+    //     <label class="switch">
+    //     <input type="checkbox">
+    //     <span class="slider round"></span>
+    //     </label>
+
+
+
 
     // Invokation //
     newCard;
@@ -90,11 +112,6 @@ let addCardStack = function (title, author, pages, completed) {
 
     // CLASS NAMING //
     newCard.className = "card";
-
-    // NEED TO FIX BOOK COUNT IN LIBRARY DATA ATTRIBUTE
-
-
-    ///////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     bookCount++
     newCard.setAttribute("data-bookNumber", `${bookCount - 1}`);
     h3.className = "cardTitle";
@@ -116,9 +133,25 @@ let addCardStack = function (title, author, pages, completed) {
     cardContent.append(authorSpan);
     cardContent.append(pagesSpan);
 
+    // ADD TOGGLE BUTTON TO CARDS //
+    toggle.className = "switch";
+    input.type = "checkbox";
+    input.id = "read_toggle";
+    toggle.append(input);
+    sliderSpan.className = "slider round";
+    toggle.append(sliderSpan);
+    cardContent.append(toggle);
+
+
+    if (input.checked == true) {
+        log('yes')
+    }
+
+
     library.append(newCard);
     btnArr();
     updateBookCount();
+
 }
 
 //============================== DELETE CARD FROM STACK ===================================//
@@ -161,6 +194,32 @@ function updateBookCount() {
     let bookNum = document.querySelector("#bookCount");
     bookNum.innerText = bookCount;
 }
+
+
+function updateReadBooks() {
+    log(this);
+
+
+    if (this.checked == true) {
+        readCount++;
+        unreadCount--;
+        readDisplay.innerText = readCount;
+        unreadDisplay.innerText = unreadCount;
+    }
+    else if (this.checked == false) {
+        unreadCount++;
+        readCount--;
+        readDisplay.innerText = readCount;
+        unreadDisplay.innerText = unreadCount;
+    }
+
+
+
+}
+
+toggleList.forEach(toggle => toggle.addEventListener("click", updateReadBooks));
+
+
 
 btnArr();
 updateBookCount();
