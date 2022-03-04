@@ -9,7 +9,6 @@ const submitbtn = document.querySelector("#submitbtn");
 const library = document.querySelector("#cardContainer");
 const closeBtn = document.getElementsByClassName("closeOut");
 
-let toggleList = document.querySelectorAll("#read_toggle");
 let btnList;
 let bookCount = 4;
 let bookList;
@@ -143,15 +142,19 @@ let addCardStack = function (title, author, pages, completed) {
     cardContent.append(toggle);
 
 
-    if (input.checked == true) {
-        log('yes')
+    if (completed == true) {
+        input.checked = true;
+        readCount++;
     }
-
-
+    else {
+        input.checked = false;
+        unreadCount++;
+    }
+    updateReadBooks();
     library.append(newCard);
     btnArr();
     updateBookCount();
-
+    assignToggles();
 }
 
 //============================== DELETE CARD FROM STACK ===================================//
@@ -176,6 +179,17 @@ function deleteCard() {
     --bookCount;
     updateBookCount();
     log(myLibrary)
+
+    if (this.nextElementSibling.lastElementChild.firstElementChild.checked == true) {
+        readCount--;
+
+    }
+    else if (this.nextElementSibling.lastElementChild.firstElementChild.checked == false) {
+        unreadCount--;
+    }
+    readDisplay.innerText = readCount;
+    unreadDisplay.innerText = unreadCount;
+    log(this.nextElementSibling.lastElementChild.firstElementChild);
 }
 
 
@@ -198,32 +212,31 @@ function updateBookCount() {
 
 function updateReadBooks() {
     log(this);
-
-
     if (this.checked == true) {
         readCount++;
         unreadCount--;
-        readDisplay.innerText = readCount;
-        unreadDisplay.innerText = unreadCount;
+
     }
     else if (this.checked == false) {
         unreadCount++;
         readCount--;
-        readDisplay.innerText = readCount;
-        unreadDisplay.innerText = unreadCount;
+
     }
+    readDisplay.innerText = readCount;
+    unreadDisplay.innerText = unreadCount;
 
 
 
 }
 
-toggleList.forEach(toggle => toggle.addEventListener("click", updateReadBooks));
-
-
+function assignToggles() {
+    let toggleList = document.querySelectorAll("#read_toggle");
+    toggleList.forEach(toggle => toggle.addEventListener("click", updateReadBooks));
+}
 
 btnArr();
 updateBookCount();
-
+assignToggles();
 
 
 
