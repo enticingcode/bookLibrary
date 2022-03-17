@@ -37,12 +37,23 @@ let myLibrary = [
     { title: "Mom's Authobiography", author: "Mom", pages: 36, completed: true }
 ];
 
-function Book(title, author, pages, completed) {
-    this.title = title,
-        this.author = author,
-        this.pages = Number(pages),
-        this.completed = completed
+// function Book(title, author, pages, completed) {
+//     this.title = title,
+//         this.author = author,
+//         this.pages = Number(pages),
+//         this.completed = completed
+// }
+
+class Book {
+    constructor(title, author, pages, completed) {
+        this.title = title,
+            this.author = author,
+            this.pages = pages,
+            this.completed = completed
+    }
 }
+
+
 
 
 // function addBookToLibrary() {
@@ -70,6 +81,12 @@ let addNewBook = function () {
         alert("Please insert valid number of pages");
     }
     else {
+
+        // REFACTORING WITH CLASS //
+
+
+        let book1 = new Book()
+
         const newBook = new Book(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
         myLibrary.push(newBook);
         addCardStack(bookTitle.value, bookAuthor.value, pages.value, bookCompleted.checked);
@@ -94,14 +111,6 @@ let addCardStack = function (title, author, pages, completed) {
     const toggle = document.createElement("label");
     const input = document.createElement("input");
     const sliderSpan = document.createElement("span");
-
-    //     <span>Mark as Read:</span>
-    //     <label class="switch">
-    //     <input type="checkbox">
-    //     <span class="slider round"></span>
-    //     </label>
-
-
 
 
     // Invokation //
